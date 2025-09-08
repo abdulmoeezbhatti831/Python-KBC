@@ -1,3 +1,5 @@
+# Upto 50 Questions are there in the Game. So, whenever the player plays again it mostly not get the same question.
+
 questions = [
     [
         "What is the output?\n\ndef foo(x, y=[]):\n    y.append(x)\n    return y\n\nprint(foo(1))\nprint(foo(2))",
@@ -424,7 +426,11 @@ questions = [
     ],
 ]
 
+# Money settings according to the question 
+
 levels = [1000, 2000, 3000, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000, 1250000, 2500000, 5000000, 10000000, 30000000, 70000000]
+
+# Commitments or say sentences to entertain the player or can say creating suspense
 
 Commitments = [
         "🧠 You're about to unlock your brain's full power...",

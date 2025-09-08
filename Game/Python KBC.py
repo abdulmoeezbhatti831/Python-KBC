@@ -2,21 +2,33 @@ from Questions import questions, levels, Commitments
 import time, threading, sys, random
 
 class Python_KBC:
+    # Initial Parameters
     def __init__(self, player):
+        # Questions and Commitments suffling
         random.shuffle(questions)
         random.shuffle(Commitments)
+        
+        # Player and Question variables
         self.player = player
         self.question = None
+        
+        # Reply variable
         self.reply = ""
+        
+        # Total Money
         self.money = 0
+
+        # Total Lifelines
         self.use_50 = 1
         self.use_flip = 1
         
+    # Question Calling 
     def call_question(self, question, level, i):
-        if i != 0: input("\n>>> Press Enter to continue <<<\n")
-        else: input("\n>>> Press Enter to Start the Game <<<\n")
+        if i != 0: input("\n>>> Press Enter to continue <<<\n") # For 1st Question only
+        else: input("\n>>> Press Enter to Start the Game <<<\n") # Gap between Questions
         time.sleep(1)
         
+        # Question framing
         print(f"💠 Question No. {i+1} for 💸Rs.{level}\n")
         time.sleep(0.3)
         print(question[0])
@@ -24,64 +36,77 @@ class Python_KBC:
         print(f"\nA) {question[1]}          B) {question[2]}")
         print(f"\nC) {question[3]}          D) {question[4]}\n")
         
+    # Getting Reply 
     def get_reply(self, question, i):
-        self.reply = ""
+        self.reply = "" # Each time reset to clear the perivous question reply
+        
+        # Function to take reply
         def rep():
             self.reply = input().lower()
-        re = threading.Thread(target=rep)
-        if i+1 <= 5:
+        # Threading to take reply in Question timing
+        re = threading.Thread(target=rep) 
+        
+        if i+1 <= 5: # 30s for 1 - 5 Questions
             re.start()
             for q in range(30):
                 if self.reply != "":
                     break
-                elif q == 29:
+                elif q == 29: # Time's up
                     self.wrong_reply(question, True)
                 else:
                     sys.stdout.write(f"\r⏳ 00 : {str(30-q).zfill(2)}\t> ")
                     sys.stdout.flush()
                     time.sleep(1)
             re.join()
-        if i+1 >= 6 and i+1 <= 10:
+            
+        if i+1 >= 6 and i+1 <= 10: # 45s for 6 - 10 Questions
             print("Ans:\n")
             re.start()
             for q in range(45):
                 if self.reply != "":
                     break
-                elif q == 44:
+                elif q == 44: # Time's up
                     self.wrong_reply(question, True)
                 else:
                     sys.stdout.write(f"\r⏳ 00 : {str(45-q).zfill(2)}\t> ")
                     sys.stdout.flush()
                     time.sleep(1)
             re.join()
-        if i+1 >= 11 and i+1 <= 15:
+            
+        if i+1 >= 11 and i+1 <= 14: # 60s for 11 - 14 Questions
             print("Ans:\n")
             re.start()
             for q in range(60):
                 if self.reply != "":
                     break
-                elif q == 59:
+                elif q == 59: # Time's up
                     self.wrong_reply(question, True)
                 else:
                     sys.stdout.write(f"\r⏳ 00 : {str(60-q).zfill(2)}\t> ")
                     sys.stdout.flush()
                     time.sleep(1)
             re.join()
-        if i+1 >= 16:
+            
+        if i+1 >= 15 and i+1 <= 17: # Unlimited time for 15 - 17 Questions
             self.reply = input("Ans:\n> ").lower()
             
+    # Commitments for entertainment and suspense
     def comments(self, i):
+        # 2 each time
         print(f"\n{Commitments[i]}")
         time.sleep(2)
         print(f"{Commitments[-(i+1)]}\n")
 
+        # Displaying "..."
         for i in range(3):
             time.sleep(1.3)
             sys.stdout.write("\r" + "." * (i + 1))
             sys.stdout.flush()
         print()
         
+    # Check the Answer
     def check_reply(self, question, level, i):
+        # Getting the selected reply option
         if self.reply == "a":
             self.reply = question[1]
         elif self.reply == "b":
@@ -91,12 +116,14 @@ class Python_KBC:
         elif self.reply == "d":
             self.reply = question[4]
             
+        # If Correct Reply
         if self.reply == question[-1]:
             time.sleep(0.5)
             print(f"✅ Absolutly Right!")
             time.sleep(0.5)
             
-            if i+1 <= 5:
+            # Money Parameters
+            if i+1 <= 5: # for 1 - 5 Questions
                 self.money = level
                 print(f"👉 Now, Your Total Money is: 💸Rs.{self.money}\n")
                 time.sleep(1.5)
@@ -104,14 +131,14 @@ class Python_KBC:
                     print(f"✨ Congratulations {self.player}!\nYou have won 💸Rs.{self.money}!\n")
                     time.sleep(1.5)
                     
-            elif i+1 > 5 and i+1 < 10:
+            elif i+1 > 5 and i+1 < 10: # for 6 - 9 Questions
                 self.money = 10000
                 print(f"👉 As this is Level {i+1}. So, Your Money remains 💸Rs.{self.money} until you reach the Level 10.")
                 time.sleep(0.5)
                 print(f"🚫 If You Quit Now, You could take 💸Rs.{level} to Your home!\n")
                 time.sleep(1.5)
                 
-            elif i+1 >= 10 and i+1 < 14:
+            elif i+1 >= 10 and i+1 < 14: # for 10 - 13 Questions
                 self.money = 320000
                 if i+1 == 10:
                     print(f"\n✨ Congratulations {self.player}!\nYou have won Rs.{self.money}!\n")
@@ -121,7 +148,7 @@ class Python_KBC:
                 print(f"🚫 If You Quit Now, You could take 💸Rs.{level} to Your home!\n")
                 time.sleep(1.5)
                 
-            elif i+1 >= 14 and i+1 <= 16:
+            elif i+1 >= 14 and i+1 <= 16: # for 14 - 16 Questions
                 self.money = 5000000
                 if i+1 == 14:
                     print(f"\n✨ Congratulations {self.player}!\nYou have won 💸Rs.{self.money}!\n")
@@ -133,7 +160,7 @@ class Python_KBC:
                 print(f"🚫 If You Quit Now, You could take 💸Rs.{level} to Your home!\n")
                 time.sleep(1.5)
                 
-            elif i+1 == 17:
+            elif i+1 == 17: # for last Question
                 self.money = 70000000
                 print(f"\n✨ Congratulations  {self.player}!!!\nYou have won Rs.{self.money}!!!\n")
                 input()
@@ -142,6 +169,7 @@ class Python_KBC:
         elif self.reply != question[-1]:
             self.wrong_reply(question, False)
             
+    # Quitting the Game
     def reply_quit(self, i):
         time.sleep(0.5)
         print(f"\n🙋 As you are quiting the game {self.player}! So, Your Total Money which you taking to your home is Rs.{levels[i-1]}")
@@ -149,9 +177,11 @@ class Python_KBC:
         print("🌠 Wishing You Good Luck for next time!")
         exit(0)
         
+    # Lifeline Setting
     def reply_lifeline(self, question, i):
         time.sleep(0.5)
             
+        # If both are used
         if self.use_50 == 0 and self.use_flip == 0:
             time.sleep(0.5)
             print("\n❌ You used all the life lines!")
@@ -165,25 +195,35 @@ class Python_KBC:
             print(f"\n1) for 50:50😎 ({self.use_50} left) \t2) for flip the question🔃 ({self.use_flip} left)")
             life_line = int(input("So, Please tell us your choice: "))
 
+            # If 50:50 is used
             if self.use_50 == 0 and life_line == 1:
                 time.sleep(0.5)
                 print("\n❌ You used 50:50 life line!")
                 life_line = int(input("Please Enter 2) for flip the question🔃: "))
 
+            # If flip the question is used
             if self.use_flip == 0 and life_line == 2:
                 time.sleep(0.5)
                 print("\n❌ You used flip the question life line!")
                 life_line = int(input("Please Enter 1) for 50:50😎: "))
 
+            # 50:50 Lifeline
             if life_line == 1:
                 if self.use_50 == 1:
+                    
+                    # Printing the current Question again
                     print(f"\n{question[0]}\n")
-                    k1 = ""
+                    
+                    # k1 & k2 for option 
+                    k1 = "" 
                     k2 = ""
+                    # o1 & o2 for option no.
                     o1 = 0
                     o2 = 0
+                    
                     for j in range(1, 5):
                         if question[j] == question[-1]:
+                            # Finding the correct answer
                             if j == 1:
                                 k1 = "A"
                                 o1 = 1
@@ -196,6 +236,8 @@ class Python_KBC:
                             if j == 4:
                                 k1 = "D"
                                 o1 = 4
+                                
+                            # One more wrong option
                             if j - 1 == 0:
                                 k2 = "D"
                                 o2 = 4
@@ -210,28 +252,35 @@ class Python_KBC:
                                     k2 = "C"
                                     o2 = 3
                     time.sleep(0.3)
+                    
+                    # Making right sequences like B, C
                     if o1 > o2:
                         print(f"\n{k2}) {question[o2]}          {k1}) {question[o1]}")
                     if o2 > o1:
                         print(f"\n{k1}) {question[o1]}          {k2}) {question[o2]}")
                     time.sleep(0.3)
-                    print("\nSo, Which option you want to be should locked 🔒?")
-                    self.get_reply(question, i= i//2)
+                    print("\nSo, Which option you want to be should locked 🔒?") # This time with no lifeline
+                    self.get_reply(question, i= i//2) # Going get reply with less time
                     time.sleep(1)
-                    self.use_50 = 0
+                    self.use_50 = 0 # Lifeline is used now
 
+            # Filp the Question Lifeline
             if life_line == 2:
                 if self.use_flip == 1:
+                    # Taking another Question
                     self.question = questions[-1]
+                    # Calling the Question
                     self.call_question(self.question, levels[i], i)
                     time.sleep(0.3)
-                    print("So, Which option you want to be should locked 🔒?")
-                    self.get_reply(self.question, i= i//2)
+                    print("So, Which option you want to be should locked 🔒?") # This time with no lifeline
+                    self.get_reply(self.question, i= i//2) # Going get reply with less time
                     time.sleep(1)
-                    self.use_flip = 0
+                    self.use_flip = 0 # Lifeline is used now
             
+    # If player's reply gone wrong or time's up
     def wrong_reply(self, question, time_over):
-        if time_over:
+        
+        if time_over: # For if given time is over
             print("\t⌛ Time's Up!")
             time.sleep(0.3)
             print(f"\n✋ But You are taking 💸Rs.{self.money} to your home {self.player}!")
@@ -243,7 +292,8 @@ class Python_KBC:
             print("🌠 Wishing You Good Luck for next time!")
             input()
             exit(0)
-        else:
+            
+        else: # For if a wrong reply
             time.sleep(0.5)
             print("\n❌ Wrong Answer!")
             time.sleep(0.3)
@@ -257,44 +307,54 @@ class Python_KBC:
             input()
             exit(0)
             
+    # Game Main or Controller
     def main(self):
         print("\n✨ WELCOME TO THE PYTHON KBC GAME ✨\n")
         print('''RULES >>>
         [1] From Question 1 to 5 -> No options of life line and quiting the Game!
         [2] Time for Question 1 to 5 -> 30s, 6 to 10 -> 45s, 11 to 15 -> 60s, 16 and 17 -> No time limit!
-        [3] Choicing a life line will cause a decrease time for answering!
+        [3] Choicing a life line will cause a decrease time for answering (30 to 30 / 45 to 30 / 60 to 45 / no limit to 60)!
         [4] Be careful if choicing life line if there's none, will cause decrease in time limit!
-        [5] Must be careful on giving reply if invalid reply given full Game will Shutdown!!!\n''')
+        [5] Must be careful on giving reply if invalid reply given full Game will be Shutdown!!!\n''')
         time.sleep(0.5)
-        for i in range(17):
+        
+        for i in range(17): # Total questions == 17
+            # Getting Question
             self.question = questions[i]
             time.sleep(0.5)
+            
+            # Calling Question
             self.call_question(self.question, levels[i], i)
-            if i+1 > 5:
+            
+            if i+1 > 5: # For 6 - 16 Questions 
                 time.sleep(1.3)
                 print("So, Which option you want to be should locked 🔒?\nDo you want to quit 🚫 (Enter '1')?\nWant to chose a life line 🍀 (Enter '2')?")
                 self.get_reply(self.question, i)
-                if self.reply not in "abcd12":
+                if self.reply not in "abcd12": # Invaild reply 
                     print("\n❌ Invalid Reply\nExisting...")
                     exit(0)
-                if self.reply == "1":
+                if self.reply == "1": # Quit
                     self.reply_quit(i)
-                if self.reply == "2":
+                if self.reply == "2": # Lifeline
                     self.reply_lifeline(self.question, i)
-                    if self.reply not in "abcd":
+                    if self.reply not in "abcd": # Invaild reply
                         print("\n❌ Invalid Reply\nExisting...")
                         exit(0)
-            else:
+                        
+            else: # For 1 - 5 Questions
                 time.sleep(1.3)
                 print("So, Which option you want to be should locked 🔒?\nAns:\n")
                 self.get_reply(self.question, i)
-                if self.reply not in "abcd":
+                if self.reply not in "abcd": # Invalid reply
                     print("\n❌ Invalid Reply\nExisting...")
                     exit(0)
+                    
+            # Commitments and check reply 
             self.comments(i)
             self.check_reply(self.question, levels[i], i)
             
-                
+
+# Game Startup
 if __name__ == "__main__":
     Game = Python_KBC(input("Player Name: ").title())
     Game.main()
