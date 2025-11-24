@@ -1,5 +1,3 @@
-# Upto 50 Questions are there in the Game. So, whenever the player plays again it mostly not get the same question.
-
 questions = [
     [
         "What is the output?\n\ndef foo(x, y=[]):\n    y.append(x)\n    return y\n\nprint(foo(1))\nprint(foo(2))",
@@ -21,7 +19,7 @@ questions = [
         "What will be the output?\n\nx = [[0] * 3] * 3\nx[0][0] = 1\nprint(x)",
         "[[1, 0, 0], [0, 0, 0], [0, 0, 0]]",
         "[[1, 0, 0], [1, 0, 0], [1, 0, 0]]",
-        "[[0, 0, 0], [1, 0, 0], [0, 0, 0]]",
+        "[[1, 0, 0], [0, 0, 0], [0, 0, 0]]",
         "[[0, 0, 0], [0, 0, 0], [1, 0, 0]]",
         "[[1, 0, 0], [1, 0, 0], [1, 0, 0]]",
     ],
@@ -298,12 +296,13 @@ questions = [
         "Assigns and returns value in expression",
     ],
     [
-        "What is the output?\n\nprint('5' > 2)", 
-        "True", 
-        "False", 
-        "Error", 
-        "None", 
-        "Error"],
+        "What is the output?\n\nprint('5' > 2)",
+        "True",
+        "False",
+        "Error",
+        "None",
+        "Error",
+    ],
     [
         "Which of the following best describes a Python metaclass?",
         "A class used to define methods",
@@ -426,44 +425,93 @@ questions = [
     ],
 ]
 
-# Money settings according to the question 
+levels = [
+    "1,000",
+    "2,000",
+    "3,000",
+    "5,000",
+    "10,000",
+    "20,000",
+    "40,000",
+    "80,000",
+    "1,60,000",
+    "3,20,000",
+    "6,40,000",
+    "12,50,000",
+    "25,00,000",
+    "50,00,000",
+    "1,00,00,000",
+    "3,00,00,000",
+    "7,00,00,000",
+]
 
-levels = [1000, 2000, 3000, 5000, 10000, 20000, 40000, 80000, 160000, 320000, 640000, 1250000, 2500000, 5000000, 10000000, 30000000, 70000000]
+Comments = [
+    "🧠 You're about to unlock your brain's full power...",
+    "🤯 Did you just level up mentally?",
+    "🎓 Loading genius mode...",
+    "🥸  Was that a big brain moment?",
+    "💵 This might be your million-dollar answer!",
+    "😱 Feeling the pressure yet?",
+    "😈 Careful... one wrong move and it's game over!",
+    "❓ Still confident?",
+    "🐍 Time to flex those Python muscles...",
+    "🧪 Got that logic flowing?",
+    "😵 Think twice. This one's spicy!",
+    "🔥 Did you feel the heat?",
+    "🫥  You're dancing with danger now...",
+    "😬 Still on fire or slightly crispy?",
+    "😇 The code gods are watching you now...",
+    "❓ Did you impress them?",
+    "🤔 This question is hiding something...",
+    "❓ Did you catch the trick?",
+    "😲 You're one step closer to greatness...",
+    "🫨  Can you taste victory yet?",
+    "🤔 What you are thinking...",
+    "❓ Did you guessed it right?",
+    "⚠️  Warning: Brain overclocking in progress...",
+    "❓ Did your neurons survive that?",
+    "😷 You just entered the logic maze...",
+    "❓ Did you find the exit or hit a wall?",
+    "🤔 This one's trickier than it looks...",
+    "🫵  Were you fooled or focused?",
+    "😤 Breathe in, breathe out... and answer!",
+    "🔓 Still calm or totally cracked?",
+    "🫨  Python whisperers know this one...",
+    "❓ Are you one of them?",
+    "🤫 Okay Let's See!",
+]
 
-# Commitments or say sentences to entertain the player or can say creating suspense
+RULES = """PYTHON KBC — GAME RULES
 
-Commitments = [
-        "🧠 You're about to unlock your brain's full power...",
-        "🤯 Did you just level up mentally?",
-        "🎓 Loading genius mode...",
-        "🥸  Was that a big brain moment?",
-        "💵 This might be your million-dollar answer!",
-        "😱 Feeling the pressure yet?",
-        "😈 Careful... one wrong move and it's game over!",
-        "❓ Still confident?",
-        "🐍 Time to flex those Python muscles...",
-        "🧪 Got that logic flowing?",
-        "😵 Think twice. This one's spicy!",
-        "🔥 Did you feel the heat?",
-        "🫥  You're dancing with danger now...",
-        "😬 Still on fire or slightly crispy?",
-        "😇 The code gods are watching you now...",
-        "❓ Did you impress them?",
-        "🤔 This question is hiding something...",
-        "❓ Did you catch the trick?",
-        "😲 You're one step closer to greatness...",
-        "🫨  Can you taste victory yet?",
-        "🤔 What you are thinking...",
-        "❓ Did you guessed it right?",
-        "⚠️  Warning: Brain overclocking in progress...",
-        "❓ Did your neurons survive that?",
-        "😷 You just entered the logic maze...",
-        "❓ Did you find the exit or hit a wall?",
-        "🤔 This one's trickier than it looks...",
-        "🫵  Were you fooled or focused?",  
-        "😤 Breathe in, breathe out... and answer!",
-        "🔓 Still calm or totally cracked?",
-        "🫨  Python whisperers know this one...",
-        "❓ Are you one of them?",
-        "🤫 Okay Let's See!"
-    ]
+    1) Objective
+       - Answer successive multiple‑choice questions to climb levels and win higher prize money.
+       - Reach the top level to win the maximum prize.
+
+    2) Questions & Time Limits
+       - Total questions: 17 (one per level).
+       - Levels 1–5  : 30 seconds per question.
+       - Levels 6–10 : 45 seconds per question.
+       - Levels 11–15: 60 seconds per question.
+       - Levels 16 & 17: no time limit per question.
+       - If the timer runs out on a question, the game ends and you take the last won money.
+
+    3) Lifelines (each usable only once per game)
+       - 50:50 : Removes two incorrect options for the current question.
+       - Flip  : Replaces the current question with another one.
+       - After a lifeline is used it becomes disabled for the remainder of the game.
+
+    4) Answering & Progress
+       - Selecting the correct option advances you to the next level and increases your prize.
+       - Selecting a wrong option ends the game; you leave with the last won money.
+       - The Quit button lets you stop the game voluntarily and take the current quit money.
+
+    5) Navigation
+       - Use 'Start Game' to begin, 'Back' to return to the previous screen, and 'Play Again' to restart after finishing.
+
+    6) Notes
+       - The timer resets for every new question.
+       - Lifelines affect only the current question and cannot be undone.
+       - Read on‑screen messages and prompts carefully before proceeding.
+
+    Good luck!
+            """
