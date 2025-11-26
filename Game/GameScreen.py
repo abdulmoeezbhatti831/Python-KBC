@@ -54,7 +54,7 @@ class GameScreen:
         self.money_info.pack(pady=(0, 15))
         
         # Timer display
-        self.timer_label = ctk.CTkLabel(content_frame, text="⏰ 30s",
+        self.timer_label = ctk.CTkLabel(content_frame, text="",
                                        font=ctk.CTkFont(family="Segoe UI", size=18, weight="bold"),
                                        text_color="#FF6B6B")
         self.timer_label.pack(pady=(0, 10))
