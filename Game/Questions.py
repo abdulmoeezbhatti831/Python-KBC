@@ -1,428 +1,604 @@
 questions = [
+
+    # 1
     [
-        "What is the output?\n\ndef foo(x, y=[]):\n    y.append(x)\n    return y\n\nprint(foo(1))\nprint(foo(2))",
+        "What is the output?\n\nx = {0: 'zero', False: 'false'}\nprint(len(x))",
+        "1",
+        "2",
+        "0",
+        "Error",
+        "1",
+    ],
+
+    # 2
+    [
+        "What happens?\n\nx = [1, 2, 3]\ny = x\ny += [4]\nprint(x)",
+        "[1, 2, 3]",
+        "[1, 2, 3, 4]",
+        "[4]",
+        "Error",
+        "[1, 2, 3, 4]",
+    ],
+
+    # 3
+    [
+        "Predict the output:\n\nx = ([],)\nx[0].append(5)\nprint(x)",
+        "([],)",
+        "([5],)",
+        "(5,)",
+        "Error",
+        "([5],)",
+    ],
+
+    # 4
+    [
+        "What is printed?\n\na = {1,2,3}\nb = {3,4,5}\nprint(a & b)",
+        "{3}",
+        "{1,2,3,4,5}",
+        "{ }",
+        "Error",
+        "{3}",
+    ],
+
+    # 5
+    [
+        "Evaluate:\n\nprint(bool('False'))",
+        "False",
+        "True",
+        "None",
+        "Error",
+        "True",
+    ],
+
+    # 6
+    [
+        "What is the output?\n\nx = 'abc'\nx += 'd'\nprint(x)",
+        "abc",
+        "abcd",
+        "['a','b','c','d']",
+        "Error",
+        "abcd",
+    ],
+
+    # 7
+    [
+        "What happens?\n\nx = [1,2,3]\nprint(x * 0)",
+        "[]",
+        "[1,2,3,1,2,3]",
+        "0",
+        "Error",
+        "[]",
+    ],
+
+    # 8
+    [
+        "Predict result:\n\nx = {1,2,3}\nx.add(3)\nprint(x)",
+        "{1,2}",
+        "{3}",
+        "{1,2,3}",
+        "Error",
+        "{1,2,3}",
+    ],
+
+    # 9
+    [
+        "What is printed?\n\ndef foo(a, b): return a is b\nprint(foo(256, 256))",
+        "True",
+        "False",
+        "Error",
+        "None",
+        "True",
+    ],
+
+    # 10
+    [
+        "Output?\n\ndef bar(): pass\nprint(bar())",
+        "None",
+        "pass",
+        "Error",
+        "''",
+        "None",
+    ],
+
+    # 11
+    [
+        "What happens?\n\nx = [1]; y = [1]\nprint(x == y, x is y)",
+        "True True",
+        "True False",
+        "False False",
+        "False True",
+        "True False",
+    ],
+
+    # 12
+    [
+        "Output?\n\nx = (1,)\ny = (1)\nprint(type(x), type(y))",
+        "<class 'tuple'> <class 'tuple'>",
+        "<class 'tuple'> <class 'int'>",
+        "<class 'int'> <class 'tuple'>",
+        "Error",
+        "<class 'tuple'> <class 'int'>",
+    ],
+
+    # 13
+    [
+        "Predict:\n\nprint([i for i in range(3) if i])",
+        "[1,2]",
+        "[0,1,2]",
+        "[ ]",
+        "Error",
+        "[1,2]",
+    ],
+
+    # 14
+    [
+        "Output?\n\nx = '1'\nprint(x * 3)",
+        "3",
+        "'111'",
+        "'3'",
+        "Error",
+        "'111'",
+    ],
+
+    # 15
+    [
+        "What prints?\n\nx = [1,2,3]\nprint(x[::-1])",
+        "[3,2,1]",
+        "[1,2,3]",
+        "Error",
+        "None",
+        "[3,2,1]",
+    ],
+
+    # 16
+    [
+        "Result?\n\nx = {1:'a', 2:'b'}\nprint(x.get(3, 'default'))",
+        "None",
+        "default",
+        "Error",
+        "3",
+        "default",
+    ],
+
+    # 17
+    [
+        "What is printed?\n\nprint(True + True + False)",
+        "2",
+        "1",
+        "3",
+        "Error",
+        "2",
+    ],
+
+    # 18
+    [
+        "What happens?\n\nx = [0,1,2,3]\ndel x[1:3]\nprint(x)",
+        "[0,3]",
+        "[1,2]",
+        "[0,1,2,3]",
+        "Error",
+        "[0,3]",
+    ],
+
+    # 19
+    [
+        "Output?\n\ndef f(a, b): return a // b\nprint(f(-3,2))",
+        "-1",
+        "-2",
+        "1",
+        "Error",
+        "-2",
+    ],
+
+    # 20
+    [
+        "What prints?\n\nx = [1,2,3]\nprint(list(map(lambda a: a*0, x)))",
+        "[0,0,0]",
+        "[1,2,3]",
+        "Error",
+        "[ ]",
+        "[0,0,0]",
+    ],
+
+    # 21
+    [
+        "Predict result:\n\nx = {1,2,3}\nprint(2 in x)",
+        "True",
+        "False",
+        "Error",
+        "None",
+        "True",
+    ],
+
+    # 22
+    [
+        "What is printed?\n\nprint(len({True:1, 1:2}))",
+        "1",
+        "2",
+        "Error",
+        "0",
+        "1",
+    ],
+
+    # 23
+    [
+        "Output?\n\nx = 'abc'\nprint(x[1:10])",
+        "'bc'",
+        "'abc'",
+        "''",
+        "Error",
+        "'bc'",
+    ],
+
+    # 24
+    [
+        "What prints?\n\nx = [1, [2,3]]\ny = x[:]\ny[1].append(4)\nprint(x)",
+        "[1,[2,3]]",
+        "[1,[2,3,4]]",
+        "[1,2,3,4]",
+        "Error",
+        "[1,[2,3,4]]",
+    ],
+
+    # 25
+    [
+        "Predict the output:\n\nprint(10 > 9 > 8)",
+        "True",
+        "False",
+        "Error",
+        "None",
+        "True",
+    ],
+
+    # 26
+    [
+        "What is printed?\n\nprint([0] * 5)",
+        "[0,0,0,0,0]",
+        "[0]",
+        "[5]",
+        "Error",
+        "[0,0,0,0,0]",
+    ],
+
+    # 27
+    [
+        "Output?\n\ndef foo(a=[]): a.append(1); return a\nprint(foo(), foo())",
+        "[1], [1]",
+        "[1], [1,1]",
+        "[1,1], [1,1]",
+        "Error",
+        "[1], [1,1]",
+    ],
+
+    # 28
+    [
+        "What prints?\n\nprint({i:i*i for i in range(3)})",
+        "{0:0,1:1,2:4}",
+        "{1:1,2:4}",
+        "{}",
+        "Error",
+        "{0:0,1:1,2:4}",
+    ],
+
+    # 29
+    [
+        "Predict:\n\nx = [1,2,3]\nprint(sum(x, 10))",
+        "6",
+        "16",
+        "Error",
+        "[1,2,3,10]",
+        "16",
+    ],
+
+    # 30
+    [
+        "Final one — what's the output?\n\ndef f(a,b,c): return a if a>b and a>c else (b if b>c else c)\nprint(f(3,7,5))",
+        "3",
+        "5",
+        "7",
+        "Error",
+        "7",
+    ],
+    
+    # 31
+    [
+        "What is the output?\n\nx = {1: 'a', True: 'b'}\nprint(x[1])",
+        "'a'",
+        "'b'",
+        "KeyError",
+        "None",
+        "'b'",
+    ],
+    
+    # 32
+    [
+        "What happens?\n\nx = [[], []]\nx[0].append(1)\nprint(x)",
+        "[[1], []]",
+        "[[1], [1]]",
+        "[1, []]",
+        "Error",
+        "[[1], []]",
+    ],
+    
+    # 33
+    [
+        "What is the output?\n\ndef foo(a, b=[]): b.append(a); return b\nprint(foo(1)); print(foo(2))",
         "[1], [2]",
         "[1], [1, 2]",
         "[1, 2], [1, 2]",
         "Error",
         "[1], [1, 2]",
     ],
+    
+    # 34
     [
-        "Which of these will cause a SyntaxError?",
-        "'hello' + 5",
-        "'5' * 3",
-        "5 + int('5')",
-        "int('1_000')",
-        "'hello' + 5",
+        "Which statement about @staticmethod is true?",
+        "It receives the instance as first argument",
+        "It receives the class as first argument",
+        "It receives neither class nor instance",
+        "It cannot be called from the class",
+        "It receives neither class nor instance",
     ],
+
+    # 35
     [
-        "What will be the output?\n\nx = [[0] * 3] * 3\nx[0][0] = 1\nprint(x)",
-        "[[1, 0, 0], [0, 0, 0], [0, 0, 0]]",
-        "[[1, 0, 0], [1, 0, 0], [1, 0, 0]]",
-        "[[1, 0, 0], [0, 0, 0], [0, 0, 0]]",
-        "[[0, 0, 0], [0, 0, 0], [1, 0, 0]]",
-        "[[1, 0, 0], [1, 0, 0], [1, 0, 0]]",
+        "What is the output?\n\nprint({i: i*i for i in range(3)}.get(5, -1))",
+        "KeyError",
+        "None",
+        "-1",
+        "5",
+        "-1",
     ],
+
+    # 36
     [
-        "Which one of the following will correctly open a file for reading encoded in UTF-8?",
-        "open('file.txt', 'rb')",
-        "open('file.txt', 'rt')",
-        "open('file.txt', 'r', encoding='utf-8')",
-        "open('file.txt', encoding='ascii')",
-        "open('file.txt', 'r', encoding='utf-8')",
+        "Which file mode truncates the file on opening?",
+        "'r'",
+        "'a'",
+        "'w'",
+        "'x'",
+        "'w'",
     ],
+
+    # 37
     [
-        "What is the output of:\n\nprint(any([]))",
+        "What is the output?\n\nprint(list(map(lambda x: x+1, (i for i in range(3)))))",
+        "[1, 2, 3]",
+        "[0, 1, 2, 3]",
+        "generator object",
+        "Error",
+        "[1, 2, 3]",
+    ],
+
+    # 38
+    [
+        "What does json.dumps() return?",
+        "A Python dict",
+        "A file object",
+        "A string",
+        "A list",
+        "A string",
+    ],
+
+    # 39
+    [
+        "What is the output?\n\nx = (i for i in range(3))\nprint(sum(x)); print(sum(x))",
+        "3, 3",
+        "3, 0",
+        "0, 0",
+        "Error",
+        "3, 0",
+    ],
+
+    # 40
+    [
+        "Which of the following correctly checks file existence using os?",
+        "os.exists('file.txt')",
+        "os.isfile('file.txt')",
+        "os.path.exists('file.txt')",
+        "os.file('file.txt')",
+        "os.path.exists('file.txt')",
+    ],
+
+    # 41
+    [
+        "What is the output?\n\nx = [1,2,3]\nprint(x is x[:])",
         "True",
         "False",
         "None",
         "Error",
         "False",
     ],
+
+    # 42
     [
-        "What is the output?\n\nx = (i*i for i in range(3))\nprint(list(x))\nprint(list(x))",
-        "[0, 1, 4], [0, 1, 4]",
-        "[0, 1, 4], []",
-        "generator object, generator object",
-        "None, None",
-        "[0, 1, 4], []",
+        "Which statement is true for Python decorators?",
+        "They must return None",
+        "They modify the function's bytecode",
+        "They wrap a function and return another function",
+        "They are executed at runtime only when function is called",
+        "They wrap a function and return another function",
     ],
+
+    # 43
     [
-        "Which of the following modules is used for serialization in Python?",
-        "jsonify",
-        "pickle",
-        "marshal",
-        "serialize",
-        "pickle",
+        "What is the output?\n\nprint(type({i for i in 'abca'}))",
+        "<class 'list'>",
+        "<class 'set'>",
+        "<class 'dict'>",
+        "<class 'tuple'>",
+        "<class 'set'>",
     ],
+
+    # 44
     [
-        "What is the output?\n\nx = {'a':1, 'b':2}\nprint(x.get('c', 3))",
+        "What happens?\n\ntry:\n    1/0\nexcept ZeroDivisionError as e:\n    print(type(e).__name__)",
+        "ZeroDivisionError",
+        "Exception",
+        "Error",
+        "TypeError",
+        "ZeroDivisionError",
+    ],
+
+    # 45
+    [
+        "What is the output?\n\nprint({}.setdefault('x', 5))",
+        "None",
         "KeyError",
-        "None",
-        "3",
-        "True",
-        "3",
+        "5",
+        "[]",
+        "5",
     ],
+
+    # 46
     [
-        "What does the 'nonlocal' keyword do in Python?",
-        "Declares a variable global",
-        "Creates a new local variable",
-        "Allows assignment to a variable in the nearest enclosing scope that is not global",
-        "Raises error if variable is undefined",
-        "Allows assignment to a variable in the nearest enclosing scope that is not global",
+        "Which of the following is TRUE about Python sets?",
+        "They allow duplicate values",
+        "They preserve insertion order always",
+        "They support O(1) average lookup time",
+        "They are mutable only at creation",
+        "They support O(1) average lookup time",
     ],
+
+    # 47
     [
-        "What is the output?\n\nprint(''.join(sorted('abc', reverse=True)))",
-        "abc",
-        "cba",
-        "bac",
-        "bca",
-        "cba",
-    ],
-    [
-        "Which method can be used to convert a list into a tuple?",
-        "tuple()",
-        "convert()",
-        "tolist()",
-        "tupleize()",
-        "tuple()",
-    ],
-    [
-        "What is the result of:\n\nbool('False') == False",
-        "True",
-        "False",
-        "SyntaxError",
-        "None",
-        "False",
-    ],
-    [
-        "Which statement is true about Python lists?",
-        "They are immutable",
-        "They are ordered and mutable",
-        "They are unordered and immutable",
-        "They are like sets",
-        "They are ordered and mutable",
-    ],
-    [
-        "What is the output?\n\nx = [i for i in range(3)]\nx[0] = 10\nprint(x)",
-        "[0, 1, 2]",
-        "[10, 1, 2]",
-        "[0, 10, 2]",
-        "[0, 1, 10]",
-        "[10, 1, 2]",
-    ],
-    [
-        "What is the output?\n\nprint(type(lambda x: x))",
-        "<class 'function'>",
-        "<type 'lambda'>",
-        "<class 'lambda'>",
-        "<class 'method'>",
-        "<class 'function'>",
-    ],
-    [
-        "Which of the following is a mutable built-in type?",
-        "tuple",
-        "frozenset",
-        "str",
-        "dict",
-        "dict",
-    ],
-    [
-        "What is the output?\n\nx = [1, 2, 3]\ny = x\nx.append(4)\nprint(y)",
+        "What is the output?\n\nx = [1,2,3]\ny = x\nx = x + [4]\nprint(y)",
         "[1, 2, 3]",
         "[1, 2, 3, 4]",
         "[4]",
-        "[1, 2, 3], [1, 2, 3, 4]",
-        "[1, 2, 3, 4]",
+        "Error",
+        "[1, 2, 3]",
     ],
+
+    # 48
     [
-        "What is the output?\n\nprint(0.1 + 0.2 == 0.3)",
+        "Which statement about __str__() is true?",
+        "It must return bytes",
+        "It is called by print()",
+        "It is the same as __repr__",
+        "It runs on object creation",
+        "It is called by print()",
+    ],
+
+    # 49
+    [
+        "What is the output?\n\nprint(bool([]) == False)",
         "True",
         "False",
         "None",
         "Error",
-        "False",
-    ],
-    [
-        "What is the output?\n\ndef foo():\n    try:\n        return 1\n    finally:\n        return 2\n\nprint(foo())",
-        "1",
-        "2",
-        "None",
-        "Error",
-        "2",
-    ],
-    [
-        "What happens if you call sys.exit() in a Python script?",
-        "It prints 'exit' and stops the script",
-        "It raises a SyntaxError",
-        "It raises SystemExit and halts execution",
-        "It closes the terminal window",
-        "It raises SystemExit and halts execution",
-    ],
-    [
-        "Which Python data type guarantees uniqueness and is unordered?",
-        "list",
-        "tuple",
-        "dict",
-        "set",
-        "set",
-    ],
-    [
-        "What is the output?\n\nx = [1, 2, 3]\nprint(x.pop(1))\nprint(x)",
-        "2, [1, 3]",
-        "1, [2, 3]",
-        "3, [1, 2]",
-        "2, [2, 3]",
-        "2, [1, 3]",
-    ],
-    [
-        "What is the correct syntax for a decorator?",
-        "@decorator",
-        "#decorator",
-        "decorator()",
-        "def @decorator():",
-        "@decorator",
-    ],
-    [
-        "What is the output?\n\nx = [1, 2, 3]\nprint(x * 2)",
-        "[1, 2, 3, 1, 2, 3]",
-        "[2, 4, 6]",
-        "Error",
-        "None",
-        "[1, 2, 3, 1, 2, 3]",
-    ],
-    [
-        "Which of these statements about Python generators is true?",
-        "They store the entire sequence in memory",
-        "They return one value at a time using yield",
-        "They use return instead of yield",
-        "They are faster than list comprehensions in all cases",
-        "They return one value at a time using yield",
-    ],
-    [
-        "What will be the output?\n\ndef foo(a, b, c):\n    print(a, b, c)\n\nargs = (1, 2)\nfoo(*args, 3)",
-        "1 2 3",
-        "1 (2, 3)",
-        "Error",
-        "(1, 2) 3",
-        "1 2 3",
-    ],
-    [
-        "Which of the following is a valid set declaration?",
-        "set = {}",
-        "myset = set()",
-        "myset = []",
-        "myset = dict()",
-        "myset = set()",
-    ],
-    [
-        "What is the result of:\n\nprint(isinstance(True, int))",
-        "False",
-        "True",
-        "None",
-        "Error",
         "True",
     ],
+
+    # 50
     [
-        "What is the output?\n\ndef make():\n    return lambda x: x**2\n\nsquare = make()\nprint(square(3))",
-        "6",
-        "9",
-        "Error",
-        "<function>",
-        "9",
+        "Which of the following creates a shallow copy of a list?",
+        "x.copy()",
+        "x.clone()",
+        "copy(x, deep=True)",
+        "list.deepcopy(x)",
+        "x.copy()",
     ],
+
+    # 51
     [
-        "What is the output of:\n\nlist(map(len, ['hi', 'hello', 'python']))",
-        "[2, 5, 6]",
-        "[1, 1, 1]",
-        "[2, 5, 5]",
-        "[2, 4, 6]",
-        "[2, 5, 6]",
-    ],
-    [
-        "Which of the following keywords is used to handle exceptions?",
-        "if",
-        "throw",
-        "catch",
-        "try",
-        "try",
-    ],
-    [
-        "What is the output?\n\nprint({i: i*i for i in range(3)})",
-        "{0: 0, 1: 1, 2: 4}",
-        "[0, 1, 2]",
-        "{0, 1, 4}",
-        "(0, 1, 4)",
-        "{0: 0, 1: 1, 2: 4}",
-    ],
-    [
-        "Which of these is not a valid Python keyword?",
-        "assert",
-        "def",
-        "lambda",
-        "function",
-        "function",
-    ],
-    [
-        "What is the output?\n\nx = (lambda a: lambda b: a + b)(2)\nprint(x(3))",
-        "5",
-        "6",
-        "23",
-        "Error",
-        "5",
-    ],
-    [
-        "Which of the following statements is true about Python namespaces?",
-        "They are unique identifiers for modules only",
-        "They are dictionaries mapping names to objects",
-        "They are immutable sets",
-        "They are local variables only",
-        "They are dictionaries mapping names to objects",
-    ],
-    [
-        "What is the output?\n\nx = {0: 'zero', 1: 'one'}\nprint(x.get(2, 'two'))",
-        "Error",
+        "What is the output?\n\ndef foo():\n    try:\n        return 'A'\n    finally:\n        return 'B'\nprint(foo())",
+        "'A'",
+        "'B'",
         "None",
-        "2",
-        "'two'",
-        "'two'",
+        "Error",
+        "'B'",
     ],
+
+    # 52
     [
-        "What does the walrus operator ':=' do?",
-        "Ends a loop early",
-        "Defines a function",
-        "Assigns and returns value in expression",
-        "Creates a generator",
-        "Assigns and returns value in expression",
+        "Which method reads an entire file into a list of lines?",
+        "file.readlines()",
+        "file.read()",
+        "file.readlist()",
+        "file.line()",
+        "file.readlines()",
     ],
+
+    # 53
     [
-        "What is the output?\n\nprint('5' > 2)",
+        "What is the output?\n\nprint(type((i for i in range(5))))",
+        "<class 'tuple'>",
+        "<class 'generator'>",
+        "<class 'list'>",
+        "<class 'range'>",
+        "<class 'generator'>",
+    ],
+
+    # 54
+    [
+        "Which is NOT a valid dictionary operation?",
+        "x['a'] = 10",
+        "x.get('a')",
+        "x.add('a')",
+        "x.pop('a')",
+        "x.add('a')",
+    ],
+
+    # 55
+    [
+        "What is the output?\n\nx = {'a':1}\ny = x\nx.update({'b':2})\nprint(y)",
+        "{'a': 1}",
+        "{'a': 1, 'b': 2}",
+        "{}",
+        "Error",
+        "{'a': 1, 'b': 2}",
+    ],
+
+    # 56
+    [
+        "What does enumerate() return?",
+        "A list of index-value pairs",
+        "A tuple",
+        "An iterator generating (index, value)",
+        "A generator expression",
+        "An iterator generating (index, value)",
+    ],
+
+    # 57
+    [
+        "What is the output?\n\nprint(all(i < 5 for i in [1,2,3,7]))",
         "True",
         "False",
         "Error",
         "None",
-        "Error",
-    ],
-    [
-        "Which of the following best describes a Python metaclass?",
-        "A class used to define methods",
-        "A blueprint for class decorators",
-        "A class of a class",
-        "A special type of object method",
-        "A class of a class",
-    ],
-    [
-        "What is the output?\n\nx = [1, 2, 3]\nprint(id(x) == id(x[:]))",
-        "True",
-        "False",
-        "Depends on system",
-        "Error",
         "False",
     ],
+
+    # 58
     [
-        "Which of these best describes duck typing?",
-        "Type checking using isinstance",
-        "Strict adherence to types",
-        "Object validity by method/property presence",
-        "Use of decorators for types",
-        "Object validity by method/property presence",
+        "Which statement is true about Python classes?",
+        "Methods are stored per instance",
+        "Attributes are always private",
+        "Class attributes are shared across instances",
+        "Instances cannot override class attributes",
+        "Class attributes are shared across instances",
     ],
+
+    # 59
     [
-        "What is the output?\n\nfrom collections import defaultdict\nd = defaultdict(int)\nd['a'] += 1\nprint(d['a'])",
-        "0",
-        "1",
+        "What is the output?\n\nx = [i*i for i in range(3)]\ny = (i*i for i in range(3))\nprint(sum(x), sum(y), sum(y))",
+        "5 5 5",
+        "5 5 0",
+        "5 0 0",
         "Error",
-        "None",
-        "1",
+        "5 5 0",
     ],
+
+    # 60
     [
-        "Which of these operators can overload object equality in Python?",
-        "__compare__",
-        "__match__",
-        "__eq__",
-        "__same__",
-        "__eq__",
-    ],
-    [
-        "What is the result?\n\nprint(set('abc') == set('cba'))",
-        "False",
-        "Error",
-        "True",
-        "None",
-        "True",
-    ],
-    [
-        "What is the output?\n\nprint([None] * 3)",
-        "[0, 0, 0]",
-        "[None, None, None]",
-        "[null, null, null]",
-        "[None]",
-        "[None, None, None]",
-    ],
-    [
-        "How do you check if all items in a list are truthy in Python?",
-        "any(list)",
-        "filter(list)",
-        "reduce(list)",
-        "all(list)",
-        "all(list)",
-    ],
-    [
-        "Which exception is raised when accessing a missing dict key without 'get'?",
-        "AttributeError",
-        "KeyError",
-        "IndexError",
-        "ValueError",
-        "KeyError",
-    ],
-    [
-        "What does the dir() function return?",
-        "All files in current directory",
-        "Documentation of a module",
-        "List of valid attributes of an object",
-        "Debug info",
-        "List of valid attributes of an object",
-    ],
-    [
-        "Which of these types is unordered?",
-        "list",
-        "tuple",
-        "dict (Python 3.7+)",
-        "set",
-        "set",
-    ],
-    [
-        "What is the output?\n\nprint(type(int('10')))",
-        "<class 'str'>",
-        "<class 'int'>",
-        "<class 'float'>",
-        "<class 'bool'>",
-        "<class 'int'>",
-    ],
-    [
-        "How are tuples different from lists?",
-        "Lists are faster",
-        "Tuples are immutable",
-        "Tuples can't store strings",
-        "Lists can't be iterated",
-        "Tuples are immutable",
-    ],
-    [
-        "Which of the following is NOT a core data type in Python?",
-        "list",
-        "tuple",
-        "class",
-        "set",
-        "class",
-    ],
-    [
-        "What is the output?\n\nprint(bool(' '))",
-        "False",
-        "True",
-        "None",
-        "Error",
-        "True",
-    ],
+        "What is the output?\n\nx = {'a':1, 'b':2}\nprint(list(x.keys()))",
+        "['b', 'a']",
+        "['a', 'b']",
+        "KeysView",
+        "dict_items",
+        "['a', 'b']",
+    ]
 ]
 
 levels = [
