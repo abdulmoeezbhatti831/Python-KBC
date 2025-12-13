@@ -29,9 +29,9 @@ Note: `customtkinter` ships its own styles and requires a working Tkinter instal
 ## Project Structure
 
 - `Game/` — main GUI package
-	- `main.py` — entry point (starts the CTk application)
-	- `WelcomeScreen.py`, `RuleScreen.py`, `GameScreen.py`, `QuitScreen.py` — UI screens
-	- `Questions.py` — question bank, prize levels, comments and rules text
+  - `main.py` — entry point (starts the CTk application)
+  - `WelcomeScreen.py`, `RuleScreen.py`, `GameScreen.py`, `QuitScreen.py` — UI screens
+  - `Questions.py` — question bank, prize levels, comments and rules text
 - `README.md` — this file
 
 ## How to run (Windows PowerShell)
